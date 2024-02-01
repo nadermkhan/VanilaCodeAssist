@@ -2,7 +2,7 @@
 <resources>
 	
 	<!-- app name -->
-    <string name="app_name">CodeAssist</string>
+    <string name="app_name">VanilaCodeAssist</string>
 	
 	<!-- home fragment -->
 	<string name="create_new_project">Create new project</string>
@@ -193,7 +193,7 @@
     <!-- about page -->
     <string name="settings_about_us_title">About Us</string>
     <string name="settings_about_us_desc">More info about the developers.</string>
-    <string name="app_description">Powerful and lightweight IDE for Android app development right within your pocket.</string>
+    <string name="app_description">Powerful and lightweight IDE for Android app development right within your pocket. An enhanced version by Muhammad Nader Mahbub Khan (Nabil)</string>
     <string name="app_version">Version</string>
     <string name="contact_group_title">Contact</string>
     <string name="app_source_title">Source code</string>
