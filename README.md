@@ -60,6 +60,11 @@ Forked of Official Codeassist version Alpha-0.2.9
 
 - [x] Multiple Projects (85%)
 
+- [x] Export Project
+
+- [x] Enabling log copy
+
+
 <img style=" width: 100%;" src=".github/resources/images/hr.jpg">
 
 ## CodeAssist Community
