@@ -80,7 +80,7 @@ public class CompilerServiceConnection implements ServiceConnection {
               }
               DiagnosticWrapper wrapper = new DiagnosticWrapper();
               wrapper.setKind(Diagnostic.Kind.NOTE);
-              wrapper.setMessage("Generated APK has been saved to " + file.getAbsolutePath());
+              wrapper.setMessage("Your APK is all set and saved at " + file.getAbsolutePath());
               wrapper.setExtra("INSTALL");
               wrapper.setSource(file);
               wrapper.setCode("");

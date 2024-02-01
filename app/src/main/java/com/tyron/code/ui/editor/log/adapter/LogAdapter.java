@@ -98,7 +98,8 @@ public class LogAdapter extends RecyclerView.Adapter<LogAdapter.ViewHolder> {
       super(layout);
 
       textView = new TextView(layout.getContext());
-      textView.setTextSize(12);
+      textView.setTextSize(14);
+      textView.setTextIsSelectable(true);
       textView.setTypeface(
           ResourcesCompat.getFont(layout.getContext(), R.font.jetbrains_mono_regular));
       textView.setMovementMethod(LinkMovementMethod.getInstance());
