@@ -5,7 +5,7 @@
 
 <h2 align="center"><b>VanilaCodeAssist</b></h2>
 <p align="center">
-Forked of Official CodeAssist Version Alpha-0.2.9 alpha03 commit `be67039` 
+Forked of Official CodeAssist Version Alpha-0.2.9 alpha03 commit <code>be67039</code> 
 <p><br>
 
 <div align='center'>
