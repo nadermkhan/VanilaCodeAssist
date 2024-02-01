@@ -3,9 +3,9 @@
 <img width='300px' height='300px' src='https://raw.githubusercontent.com/deenu143/CodeAssist-ALPHA-0.2.9/CodeAssist/main/logo-light.png#gh-light-mode-only'>
 </p>
 
-<h2 align="center"><b>CodeAssist Unofficial</b></h2>
+<h2 align="center"><b>VanilaCodeAssist</b></h2>
 <p align="center">
-Forked of Official Codeassist version Alpha-0.2.9
+Forked of Official CodeAssist Version Alpha-0.2.9 alpha03 commit `be67039` 
 <p><br>
 
 <div align='center'>
@@ -18,7 +18,7 @@ Forked of Official Codeassist version Alpha-0.2.9
 ![Commit Activity](https://img.shields.io/github/commit-activity/m/Deenu143/CodeAssist-ALPHA-0.2.9)
 <img src="https://img.shields.io/github/v/release/Deenu143/CodeAssist-ALPHA-0.2.9?include_prereleases&amp;label=latest%20release" alt="Latest release">
 
-  <h2>A javac APIs-based code editor that supports building Android apps.</h2>
+  <h2>A javac APIs-based IDE that supports building Android apps.</h2>
 
 </div>
 
