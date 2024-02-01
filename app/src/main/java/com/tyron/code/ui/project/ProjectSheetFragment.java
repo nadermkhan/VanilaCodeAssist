@@ -221,7 +221,7 @@ public class ProjectSheetFragment extends BottomSheetDialogFragment {
                     * Email: muhammadnadermahbubkhan@gmail.com
                     */
                         final String project_path = project.getRootFile().getName();
-                        Log.e("AppName", project_path);
+                        Log.d("AppName", project_path);
                         File project_folder = new File(getActivity().getExternalFilesDir(null), "Projects/" + project_path);
                         Log.d("USEROFNaderZipUtil", "Directory: " + project_folder.getPath());
                         Thread zipThread = new Thread(new Runnable() {
@@ -240,6 +240,8 @@ public class ProjectSheetFragment extends BottomSheetDialogFragment {
                                         }
                                     });
                                 } catch (Exception e) {
+                                   Toast.makeText(getActivity(), "Unable to export your project", Toast.LENGTH_SHORT).show();
+                                       
                                     Log.e("NaderZipUtil", "Error While Zipping: " + e.getMessage());
                                 }
                             }
