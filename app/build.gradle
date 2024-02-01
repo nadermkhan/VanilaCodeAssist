@@ -19,7 +19,7 @@ android {
 		minSdkVersion 26		
 		applicationId "com.tyron.code"
 		versionCode 29
-		versionName "0.2.9-alpha03"
+		versionName "0.2.9-vanila"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
