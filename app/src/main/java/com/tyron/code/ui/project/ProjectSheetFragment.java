@@ -39,6 +39,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Executors;
 import org.apache.commons.io.FileUtils;
+import com.nader.util.NaderProjectShareUtil;
+import com.nader.util.NaderZipUtil;
+import android.util.Log;
 
 public class ProjectSheetFragment extends BottomSheetDialogFragment {
 
@@ -113,7 +116,7 @@ public class ProjectSheetFragment extends BottomSheetDialogFragment {
   }
 
   private boolean inflateProjectMenus(View view, Project project) {
-    String[] option = {"Rename", "Delete", "Copy Path"};
+    String[] option = {"Rename", "Delete", "Copy Path", "Export Project"};
     new MaterialAlertDialogBuilder(requireContext())
         .setItems(
             option,
@@ -209,6 +212,41 @@ public class ProjectSheetFragment extends BottomSheetDialogFragment {
                         Toast.makeText(
                             requireContext(), R.string.copied_to_clipboard, Toast.LENGTH_LONG);
                     toast.show();
+                    break;
+
+                  case 3:
+                    /*
+                    * This feature is added by Nader Mahbub Khan
+                    * Github: https://github.com/nadermkhan/
+                    * Email: muhammadnadermahbubkhan@gmail.com
+                    */
+                        final String project_path = project.getRootFile().getName();
+                        Log.e("AppName", project_path);
+                        File project_folder = new File(getActivity().getExternalFilesDir(null), "Projects/" + project_path);
+                        Log.d("USEROFNaderZipUtil", "Directory: " + project_folder.getPath());
+                        Thread zipThread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                   File backup_file = NaderZipUtil.zipFolder(project_folder);
+                                   if(backup_file.isFile()){
+                                       
+                                       NaderProjectShareUtil.shareBackupFile(getContext(),backup_file);
+                                   }
+                                    getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getActivity(), "VanilaCAProject "+project_path+" has been exported successfully", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                } catch (Exception e) {
+                                    Log.e("NaderZipUtil", "Error While Zipping: " + e.getMessage());
+                                }
+                            }
+                        });
+                        zipThread.start();
+
+                      
                     break;
                 }
               }
