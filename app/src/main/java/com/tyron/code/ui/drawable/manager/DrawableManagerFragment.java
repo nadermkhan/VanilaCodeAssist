@@ -70,11 +70,11 @@ public class DrawableManagerFragment extends Fragment {
                       Uri selectedFileUri = result;
                       String filePath = selectedFileUri.getPath(); // Get the file path
                       naderNormalUtil.showToast("File selected: " + filePath);
-                      String path =
+                      String drawable_path =
                               ProjectManager.getInstance().getCurrentProject().getRootFile().getAbsolutePath()
                                       + "/app/src/main/res/drawable/";
                       try {
-                          naderNormalUtil.copyFile(new File(filePath), new File(path));
+                          naderNormalUtil.copyFile(new File(filePath), new File(drawable_path));
                           naderNormalUtil.showToast("Something good happening");
                       } catch (Exception e){
                           naderNormalUtil.showToast("Problem happened here 001");
