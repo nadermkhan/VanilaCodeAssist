@@ -18,6 +18,7 @@ import androidx.transition.TransitionManager;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.transition.MaterialFade;
+import com.nader.util.FileOperationUtil;
 import com.tyron.code.R;
 import com.tyron.code.ui.drawable.Drawables;
 import com.tyron.code.ui.drawable.adapter.DrawableManagerAdapter;
@@ -195,7 +196,7 @@ public class DrawableManagerFragment extends Fragment {
   }
 
   private boolean showDialog(final Drawables drawable) {
-    String[] option = {"Rename", "Delete"};
+    String[] option = {"Import","Rename", "Delete"};
     new MaterialAlertDialogBuilder(requireContext())
         .setItems(
             option,
@@ -203,7 +204,12 @@ public class DrawableManagerFragment extends Fragment {
               @Override
               public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
-                  case 0:
+                    case 0:
+                        //Implementing Drawable Backup System
+                        FileOperationUtil.pickAndCopyFile(getActivity());
+                        Toast.makeText(getContext(),"Attempt to try importing files ",Toast.LENGTH_SHORT).show();
+                        break;
+                  case 1:
                     LayoutInflater inflater =
                         (LayoutInflater)
                             requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -267,7 +273,7 @@ public class DrawableManagerFragment extends Fragment {
 
                     break;
 
-                  case 1:
+                  case 2:
                     String message =
                         getString(R.string.dialog_confirm_delete, drawable.getRootFile().getName());
                     new MaterialAlertDialogBuilder(requireContext())

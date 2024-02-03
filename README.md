@@ -64,6 +64,8 @@ Forked of Official CodeAssist Version Alpha-0.2.9 alpha03 commit <code>be67039</
 
 - [x] Enabling log copy
 
+- [ ] Import Drawables
+
 
 <img style=" width: 100%;" src=".github/resources/images/hr.jpg">
 
