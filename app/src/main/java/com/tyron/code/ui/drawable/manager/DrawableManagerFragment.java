@@ -2,14 +2,20 @@ package com.tyron.code.ui.drawable.manager;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -19,6 +25,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.transition.MaterialFade;
 import com.nader.util.FileOperationUtil;
+import com.nader.util.NaderNormalUtil;
 import com.tyron.code.R;
 import com.tyron.code.ui.drawable.Drawables;
 import com.tyron.code.ui.drawable.adapter.DrawableManagerAdapter;
@@ -36,11 +43,13 @@ import org.apache.commons.io.FileUtils;
 
 public class DrawableManagerFragment extends Fragment {
 
+    private static final int PICK_FILE_REQUEST_CODE = 123;
+
   public static final String TAG = DrawableManagerFragment.class.getSimpleName();
 
   private RecyclerView mRecyclerView;
   private DrawableManagerAdapter mAdapter;
-
+    private ActivityResultLauncher<String> filePickerLauncher;
   public static DrawableManagerFragment newInstance() {
     DrawableManagerFragment fragment = new DrawableManagerFragment();
     return fragment;
@@ -49,6 +58,20 @@ public class DrawableManagerFragment extends Fragment {
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+    NaderNormalUtil naderNormalUtil = new NaderNormalUtil(getContext());
+
+    //Magic by Nader Mahbub Khan
+      filePickerLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(),
+              result -> {
+                  if (result != null) {
+                      Uri selectedFileUri = result;
+                      String filePath = selectedFileUri.getPath(); // Get the file path
+                      naderNormalUtil.showToast("File selected: " + filePath);
+
+                      // Further processing or actions related to the selected file can be done here
+                  }
+              });
   }
 
   @Nullable
@@ -206,9 +229,16 @@ public class DrawableManagerFragment extends Fragment {
                 switch (which) {
                     case 0:
                         //Implementing Drawable Backup System
-                        FileOperationUtil.pickAndCopyFile(getActivity());
-                        Toast.makeText(getContext(),"Attempt to try importing files ",Toast.LENGTH_SHORT).show();
-                        break;
+                        /*
+                        * Additional codes by Nader Mahbub Khan
+                        *
+                         */
+
+                        // Implementing Drawable Backup System
+                        filePickerLauncher.launch("*/*");
+
+
+                    break;
                   case 1:
                     LayoutInflater inflater =
                         (LayoutInflater)

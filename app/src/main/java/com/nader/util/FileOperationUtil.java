@@ -1,11 +1,11 @@
 package com.nader.util;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,6 +33,7 @@ public class FileOperationUtil {
             new Thread(new CopyFileRunnable(activity, selectedFileUri)).start();
         } else {
             // Handle other results or errors
+            Toast.makeText(activity.getApplicationContext(), "Faced a problem",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -72,13 +73,15 @@ public class FileOperationUtil {
                 // Log the copied file URL
                 Log.d("FileHandler", "File copied to: " + destinationFile.getAbsolutePath());
 
-                // Finish the activity on the UI thread
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        activity.finish();
-                    }
-                });
+                // Finish the activity on the UI thread if it's not finishing already
+                if (!activity.isFinishing()) {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            activity.finish();
+                        }
+                    });
+                }
             } catch (IOException e) {
                 e.printStackTrace();
                 // Handle errors
