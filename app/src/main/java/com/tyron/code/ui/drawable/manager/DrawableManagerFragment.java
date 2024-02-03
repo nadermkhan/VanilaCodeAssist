@@ -41,6 +41,8 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import org.apache.commons.io.FileUtils;
 
+import shadow.bundletool.com.android.tools.r8.internal.Ex;
+
 public class DrawableManagerFragment extends Fragment {
 
     private static final int PICK_FILE_REQUEST_CODE = 123;
@@ -68,6 +70,15 @@ public class DrawableManagerFragment extends Fragment {
                       Uri selectedFileUri = result;
                       String filePath = selectedFileUri.getPath(); // Get the file path
                       naderNormalUtil.showToast("File selected: " + filePath);
+                      String path =
+                              ProjectManager.getInstance().getCurrentProject().getRootFile().getAbsolutePath()
+                                      + "/app/src/main/res/drawable/";
+                      try {
+                          naderNormalUtil.copyFile(new File(filePath), new File(path));
+                          naderNormalUtil.showToast("Something good happening");
+                      } catch (Exception e){
+                          naderNormalUtil.showToast("Problem happened here 001");
+                      }
 
                       // Further processing or actions related to the selected file can be done here
                   }
